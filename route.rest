@@ -2,4 +2,28 @@ GET http://localhost:3000/subscribers
 
 ###
 
-GET http://localhost:3000/subscribers/12
+GET http://localhost:3000/subscribers/61c937cf9250286a1243fbbd
+
+###
+
+POST http://localhost:3000/subscribers
+Content-Type: application/json
+
+{
+    "name": "Alli",
+    "subscribedToChannel": "Web Dev Simplified"
+}
+
+###
+
+DELETE http://localhost:3000/subscribers/61c92c840f9c697d395d7ac1
+
+###
+
+PATCH http://localhost:3000/subscribers/61c9424010b61e51e1ff022a
+Content-Type: application/json
+
+{
+    "name": "Test",
+    "subscribedToChannel": "My channel test"
+}
