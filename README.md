@@ -62,8 +62,8 @@ router.delete('/:id', getSubscriber, async (req, res) => {
 })
 ```
 
-- Value vs Reference (https://www.youtube.com/watch?v=-hBJz2PPIVE)
+- Value vs Reference (https://www.youtube.com/watch?v=-hBJz2PPIVE; https://www.geeksforgeeks.org/pass-by-value-and-pass-by-reference-in-javascript/)
 
 > Pass by value is for primitive data types such as number, boolean, string, null, and undefined.
 
-> Pass by reference is for non-primitive data types such as arrays, objects, strings, and classes. The value is stored in a location or a memory in a computer.
+> Pass by reference is for non-primitive data types such as arrays, objects, strings, and classes. The value is stored in a location or reference/address.
