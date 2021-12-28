@@ -58,6 +58,7 @@ router.delete('/:id', getSubscriber, async (req, res) => {
     }
 })
 
+// Middleware
 async function getSubscriber (req, res, next) {
     let subscriber
 

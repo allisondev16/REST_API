@@ -3,9 +3,49 @@
 
 - `app.use(express.json())` - This is a built-in middleware function in Express. It parses incoming requests with JSON payloads and is based on body-parser. Returns middleware that only parses json and only looks at requests where the Content-Type header matches the type option.
 
-- return in function stops there
+- The return statement stops the execution of a function and returns a value from that function. (https://www.w3schools.com/jsref/jsref_return.asp)
+```JS
+async function getSubscriber (req, res, next) {
+    let subscriber
 
-- next paramater in a function
+    try {
+        subscriber = await Subscriber.findById(req.params.id)
+        if (subscriber == null) {
+            return res.status(404).json({ message: 'Cannot find subscriber' })
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
+
+    res.subscriber = subscriber
+    next()
+}
+```
+
+- Middleware functions are functions that have access to the request object (req), the response object (res), and the next function in the application’s request-response cycle. The next function is a function in the Express router which, when invoked, executes the middleware succeeding the current middleware.
+```JS
+// Getting one
+router.get('/:id', getSubscriber, (req, res) => {
+    res.json(res.subscriber)
+})
+
+// Middleware
+async function getSubscriber (req, res, next) {
+    let subscriber
+
+    try {
+        subscriber = await Subscriber.findById(req.params.id)
+        if (subscriber == null) {
+            return res.status(404).json({ message: 'Cannot find subscriber' })
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
+
+    res.subscriber = subscriber
+    next()
+}
+```
 
 - custom middleware
 
@@ -21,3 +61,7 @@ router.delete('/:id', getSubscriber, async (req, res) => {
     }
 })
 ```
+
+- Value vs Reference (https://www.youtube.com/watch?v=-hBJz2PPIVE)
+-- Pass by value is for primitive data types such as number, boolean, string, null, and undefined.
+-- Pass by reference is for non-primitive data types such as arrays, objects, strings, and classes. The value is stored in a location or a memory in a computer.
