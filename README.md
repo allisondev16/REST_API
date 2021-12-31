@@ -92,3 +92,23 @@ GET /cars?color=blue
 > As far as syntax is concerned, your URL names should be all lowercase. If you have an entity name that is generally two words in English, you would use a hyphen to separate the words, not camel case.
 
 Ex. `/two-words`
+
+- `res.status(400)` or any error status stops the execution at the client
+> For this example middleware function:
+```JS
+async function getUser(req, res, next) {
+    let userdata;
+
+    try {
+        userdata = await User.findOne({username: req.params.username});
+        if (userdata == null) {
+            return res.status(400).json({message: "User not found."}); // status 400 stops the execution at client if the client requested for a user that does not exist
+        }
+    } catch (error) {
+        return res.status(500).json({message: error.message});
+    }
+
+    res.userdata = userdata;
+    next();
+}
+```
